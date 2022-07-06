@@ -1,4 +1,4 @@
-batch = 4
+batch_size = 4
 epoch = 30
 
 earlystop_patience = 15
