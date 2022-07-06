@@ -1,23 +1,23 @@
 import torch
 import torch.nn as nn
 import torchvision.transforms as transforms
-# from torchsummary import summary
+import logging
 import torch.optim as optim
 from model import ResBlock, Net
 from dataset import trainset, trainloader, testset, testloader
 import config
+import os
+
+# setting up logging
+logging.basicConfig(filename = config.PATH["LOGS"]), level=logging.INFO)
+
 
 net = Net(3, ResBlock, outputs = 4)
 
 # summary(net, (3,32,32))
-<<<<<<< HEAD
 pytorch_total_params = sum(p.numel() for p in net.parameters())
 print("total parameters = {}".format(pytorch_total_params))
 
-=======
-pytorch_total_params = sum(p.numel() for p in net.parameters() if p.requires_grad)
-pytorch_total_params
->>>>>>> cde55c924c6ebb2fc04925879042a9f6359c1d66
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 scheduler = optim.lr_scheduler.OneCycleLR(optimizer, max_lr=0.01, steps_per_epoch=len(trainloader), epochs=config.epoch)        
@@ -71,8 +71,4 @@ with torch.no_grad():
 
 print(f'Accuracy of the network on the 10000 test images: {100 * correct // total} %')
 
-torch.save(net.state_dict(), config.MODEL_SAVE_PATH)
-<<<<<<< HEAD
-
-=======
->>>>>>> cde55c924c6ebb2fc04925879042a9f6359c1d66
+torch.save(net.state_dict(), config.PATH["MODEL_SAVE"])
