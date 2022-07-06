@@ -9,14 +9,14 @@ import config
 import os
 
 # setting up logging
-logging.basicConfig(filename = config.PATH["LOGS"])
+logging.basicConfig(filename = config.PATH["LOGS"], level=logging.INFO)
 
 
 net = Net(3, ResBlock, outputs = 4)
 
 # summary(net, (3,32,32))
 pytorch_total_params = sum(p.numel() for p in net.parameters())
-logging.info(f"total parameters = {pytorch_total_params}")
+logging.info(f'total parameters = {pytorch_total_params}')
 
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
