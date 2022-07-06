@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import torch.optim as optim
 import torch.nn as nn
 import torch
@@ -28,6 +29,9 @@ class ResBlock(nn.Module):
         input = input + shortcut
         return nn.ReLU()(input)
 
+=======
+#@title
+>>>>>>> cde55c924c6ebb2fc04925879042a9f6359c1d66
 class Net(nn.Module):
     def __init__(self, in_channels, resblock, outputs=1000):
         super().__init__()
@@ -79,11 +83,22 @@ class Net(nn.Module):
         return input
   
 net = Net(3, ResBlock, outputs = 4)
+<<<<<<< HEAD
 
 # from torchsummary import summary
+=======
+import torch.optim as optim
+
+from torchsummary import summary
+>>>>>>> cde55c924c6ebb2fc04925879042a9f6359c1d66
 # summary(net, (3,32,32))
 
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+<<<<<<< HEAD
 # epoch = 30
 scheduler = optim.lr_scheduler.OneCycleLR(optimizer, max_lr=0.01, steps_per_epoch=len(dataset.trainloader), epochs=config.epoch)
+=======
+epoch = 30
+scheduler = optim.lr_scheduler.OneCycleLR(optimizer, max_lr=0.01, steps_per_epoch=len(trainloader), epochs=epoch)
+>>>>>>> cde55c924c6ebb2fc04925879042a9f6359c1d66
